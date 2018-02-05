@@ -22,3 +22,19 @@ int insertion_sort_main_better(int * input,int length){
 	}
 	return 0;
 }
+int shell_sort_main(int * input,int length){
+	int hk;
+	for(hk=length/2;hk>0;hk=hk/2){
+		for(int first=0;first<hk;first++){
+			int i,j,temp;
+			for(i=first+hk;i<length;i=i+hk){
+				temp=*(input+i);
+				for(j=i-hk;j>=0&&*(input+j)>temp;j=j-hk){
+					*(input+j+hk)=*(input+j);
+				}
+				*(input+j+hk)=temp;
+			}
+		}
+	}
+	return 0;
+}

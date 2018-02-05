@@ -9,8 +9,7 @@ int print_array(int * input,int length){
 int main(void){
 	int a[10]={1,4,7,2,5,8,3,6,9,0};
 	print_array(a,10);
-	insertion_sort_main_better(a,10);
+	shell_sort_main(a,10);
 	print_array(a,10);
-	getchar();
 	return 0;
 }
