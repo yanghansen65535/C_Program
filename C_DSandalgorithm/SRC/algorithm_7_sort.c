@@ -72,3 +72,24 @@ int * Msort_main(int * input,int length){
 		return a;
 	}
 }
+int * quick_sort_main(int * input,int length){
+	if(length>1){
+	 int i=0;
+	 int j=length-2;
+	 while(i<j){
+		 while(*(input+i)<=*(input+length-1)){i++;}
+		 while(*(input+j)>=*(input+length-1)){j--;}
+		 if(i<j){
+			 *(input+i)=*(input+i)^*(input+j);
+			 *(input+j)=*(input+i)^*(input+j);
+			 *(input+i)=*(input+i)^*(input+j);
+		 }
+	 }
+	 *(input+i)=*(input+i)^*(input+length-1);
+	 *(input+length-1)=*(input+i)^*(input+length-1);
+	 *(input+i)=*(input+i)^*(input+length-1);
+	 quick_sort_main(input,i);
+	 quick_sort_main(input+i+1,length-i-1);
+ 	 }
+	return input;
+}
