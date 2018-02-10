@@ -1,3 +1,4 @@
+#include"algorithm_7_sort.h"
 int insertion_sort_main(int * input,int length){
 	int i,j,temp;
 	for(i=1;i<length;i++){
@@ -37,4 +38,37 @@ int shell_sort_main(int * input,int length){
 		}
 	}
 	return 0;
+}
+int * Msort_main(int * input,int length){
+	int * a,* b,* malloc_p;
+	int length1,length2,i,j;
+	length1=length/2;
+	length2=length-length1;
+	if(length==1){
+		return input;
+	}else{
+		a=Msort_main(input,length1);
+		b=Msort_main(input+length1,length2);
+		malloc_p=(int*)malloc(length*sizeof(int));
+		for(i=0,j=0;i<length1&&j<length2;){
+			if(*(a+i)<*(b+j)){
+				*(malloc_p+i+j)=*(a+i);
+				i++;
+			}else if(*(a+i)>=*(b+j)){
+				*(malloc_p+i+j)=*(b+j);
+				j++;
+			}
+		}
+		while(i<length1){
+			*(malloc_p+i+j)=*(a+i);
+			i++;
+		}
+		while(j<length2){
+			*(malloc_p+i+j)=*(b+j);
+			j++;
+		}
+		memcpy(a,malloc_p,length*sizeof(int));
+		free(malloc_p);
+		return a;
+	}
 }
